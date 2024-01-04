@@ -2,10 +2,10 @@
 <%- include("./partials/head.ejs" ) %>
 
 <body>
-  <%- include("./partials/nav.ejs" , { username: user,isLogedIn }) %>
+  <%- include("./partials/nav.ejs" , { username,isLogedIn }) %>
   <!-- passing value to further partials -->
   <div class="blogs content">
-    <h2> Blogs - <%= user %></h2>
+    <h2> Blogs - <%= username %></h2>
 
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>

@@ -2,7 +2,7 @@
 <%- include("./partials/head.ejs") %>
 
 <body>
-  <%- include("./partials/nav.ejs",{isLogedIn}) %>
+  <%- include("./partials/nav.ejs",{ username,isLogedIn}) %>
   
   <div class="blogs content">
     <h2>All Blogs <%= isLogedIn || "not log" %></h2>

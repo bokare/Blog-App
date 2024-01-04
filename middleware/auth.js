@@ -26,6 +26,7 @@ const verifyJWT = async (req, res, next) => {
     }
     console.log("req send by = ",user);
     req.user = user;
+    req.username = user.username;
     req.isLogedIn = true;
     next();
 

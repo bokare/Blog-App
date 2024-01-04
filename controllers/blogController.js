@@ -21,9 +21,10 @@ const blog_index = (req, res) => {
   
   Blog.find()
     .sort({ createdAt: -1 })
-    .then((data) => res.render("index", { title: "All Blogs", blogs: data ,isLogedIn :req.cookies.isLogedIn}))
+    .then((data) => res.render("index", { title: "All Blogs", blogs: data ,isLogedIn :req.cookies.isLogedIn,username: req.username}))
     .catch((err) => console.log("database save error", err));
 };
+
 
 const blog_details = (req, res) => {
   const blog = new Blog({
@@ -40,7 +41,7 @@ const blog_details = (req, res) => {
 };
 
 const blog_create_get = (req, res) => {
-  res.render("create", { title: "Create a new blog",isLogedIn :req.cookies.isLogedIn });
+  res.render("create", { title: "Create a new blog",isLogedIn :req.cookies.isLogedIn,username: req.username});
 };
 
 const blog_create_post = (req, res) => {
@@ -48,7 +49,7 @@ const blog_create_post = (req, res) => {
   console.log(id);
   Blog.findById(id)
     .then((data) =>
-      res.render("details", { title: `Blog | ${id}`, blog: data ,isLogedIn :req.cookies.isLogedIn})
+      res.render("details", { title: `Blog | ${id}`, blog: data ,isLogedIn :req.cookies.isLogedIn,username: req.username})
     )
     .catch((err) => console.log(err));
 };
@@ -61,16 +62,16 @@ const blog_delete = (req, res) => {
       res.json({ redirect: "/blogs" }); //   cannot redirect on server . need to redirect from frontend
     })
     .catch((err) => {
-      res.status(404).render("404", { title: "404" ,isLogedIn :req.cookies.isLogedIn});
+      res.status(404).render("404", { title: "404" ,isLogedIn :req.cookies.isLogedIn,username: req.username});
     });
 };
 
 const getRegister = (req, res) => {
-  res.render("register", { title: "Registar",isLogedIn :req.cookies.isLogedIn });
+  res.render("register", { title: "Registar",isLogedIn :req.cookies.isLogedIn,username: req.username});
 };
 
 const getLogin = (req, res) => {
-  res.render("login", { title: "Login",isLogedIn :req.cookies.isLogedIn });
+  res.render("login", { title: "Login",isLogedIn :req.cookies.isLogedIn,username: req.username });
 };
 
 const postRegister = async (req, res) => {
@@ -159,12 +160,13 @@ const userBlog = async (req, res) => {
       res.render("myBlog", {
         title: "All Blogs",
         blogs: data,
-        user: req.user.username,
+        username: req.username,
         isLogedIn :req.cookies.isLogedIn
       })
     )
     .catch((err) => console.log("database save error", err));
 };
+
 const userLogout = async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
@@ -190,15 +192,17 @@ const userLogout = async (req, res) => {
     .clearCookie("isLogedIn", options)
     .redirect("/blogs");
 };
+
 const myBlogDetails = async (req, res) => {
   const id = req.params.id;
   console.log(id);
   Blog.findById(id)
     .then((data) =>
-      res.render("myBlogDetails", { title: `Blog | ${id}`, blog: data ,isLogedIn :req.cookies.isLogedIn})
+      res.render("myBlogDetails", { title: `Blog | ${id}`, blog: data ,isLogedIn :req.cookies.isLogedIn,username: req.username})
     )
     .catch((err) => console.log(err));
 };
+
 
 module.exports = {
   blog_index,
