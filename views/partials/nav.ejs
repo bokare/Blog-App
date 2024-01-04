@@ -1,0 +1,27 @@
+<nav>
+  <div class="site-title">
+    <a href="/">
+      <h1>Blog Pulse</h1>
+    </a>
+    <p>Connecting Ideas Globally <%= typeof username !=='undefined'  ? username : ' - ' %>
+      <% if (typeof isLogedIn =='undefined') { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </p>
+  </div>
+  <ul>
+    <li><a href="/">Blogs</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/register">Register</a></li>
+    <% if (typeof isLogedIn =='undefined') { %>
+      <li><a href="/login">Login</a></li>
+    <% } %>
+    <% if (typeof isLogedIn !=='undefined') { %>
+      <li><a href="/blogs/create" id="create">New Blog</a></li>
+      <li><a href="/user/blogs">MyBlogs</a></li>
+      <li><a href="/user/logout">Logout</a></li>
+    <% } %>
+
+
+  </ul>
+</nav>

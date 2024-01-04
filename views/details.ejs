@@ -1,0 +1,39 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs",{ isLogedIn : isLogedIn}) %>
+
+  <div class="details content">
+    <h2>YourBlog</h2>
+    <div class="details content">
+        <h2><%= blog.title %></h2>
+        <div class="content">
+          <p><%= blog.body %></p>
+        </div>
+        
+        <!-- we are setting custom attribute   doc  -->
+        <!-- <a type="button" class='delete' href="/blogs/<%= blog._id %>/delete">Delete</a> -->
+    </div>
+  </div>
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const elem = document.querySelector('a.delete');
+
+    elem.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${elem.dataset.doc}`;
+      //  accessing custom attribute by elem.dataset.attruibute
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)   // redirecting  , we can't redirect from server 
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+
+</html>
