@@ -22,7 +22,8 @@
     const elem = document.querySelector('a.delete');
 
     elem.addEventListener('click', (e) => {
-      const endpoint = `user/blogs/${elem.dataset.doc}`;
+      console.log("delete button is clicked ")
+      const endpoint = `/blogs/${elem.dataset.doc}`;
       //  accessing custom attribute by elem.dataset.attruibute
 
       fetch(endpoint, {

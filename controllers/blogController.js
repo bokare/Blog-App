@@ -25,7 +25,6 @@ const blog_index = (req, res) => {
     .catch((err) => console.log("database save error", err));
 };
 
-
 const blog_details = (req, res) => {
   const blog = new Blog({
     title: req.body.title,

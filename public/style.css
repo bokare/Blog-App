@@ -12,9 +12,16 @@ body {
     padding: 0 20px;
     font-family: 'Noto Serif', serif;
     max-width: 1200px;
+    min-height: 90vh;
+    position: relative;
 }
 
-p,h1,h2,h3,a,ul {
+p,
+h1,
+h2,
+h3,
+a,
+ul {
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -52,17 +59,19 @@ nav a {
     font-weight: 300;
 }
 
-nav a:hover{
+nav a:hover {
     font-weight: 500;
-    color:brown
+    color: brown
 }
+
 footer {
-    color: #777;;
+    color: #777;
     text-align: center;
-    margin: 80px auto 15px;
+    /* margin: 280px auto auto 15px; */
     position: absolute;
     bottom: 0;
-    right:45%;
+    right: 45%;
+    
 }
 
 h2 {
@@ -76,36 +85,40 @@ h3 {
 
 .content {
     margin-left: 20px;
+    padding-bottom: 50px;
 }
 
 /* index styles */
-.blogs a{
+.blogs a {
     display: block;
     margin: 40px 0;
     padding-left: 30px;
     border-left: 6px solid crimson;
-  }
-  .blogs a:hover h3{
+}
+
+.blogs a:hover h3 {
     color: crimson;
-  }
+}
 
 /* details styles */
-.details{
+.details {
     position: relative;
-  }
-  .delete{
+}
+
+.delete {
     position: absolute;
     top: 0;
     right: 0;
     padding: 8px;
-    padding-right: 8px ;
+    padding-right: 8px;
     background-color: blueviolet;
 
-  }
-  .delete:hover{
+}
+
+.delete:hover {
     cursor: pointer;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
-  }
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
 
 /* create styles */
 .create-blog form {
