@@ -5,7 +5,9 @@
   <%- include("./partials/nav.ejs",{ username,isLogedIn}) %>
   
   <div class="blogs content">
-    <h2>All Blogs <%= isLogedIn || "not log" %></h2>
+    <h2>All Blogs - <%- typeof username !== 'undefined' ? `${username} ` : '<a href="/login" style="all: unset;">Login</a>' %></h2>
+    <!-- render HTML content dynamically in EJS templates using `<%- %>` -->
+
 
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
