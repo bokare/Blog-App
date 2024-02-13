@@ -13,7 +13,7 @@ const User = require("./models/user.model.js");
 // register view engine
 app.set("view engine", "ejs");
 
-const port = 3000;
+const port = 8000;
 const database_string = process.env.MONGO_URI;
 mongoose
   .connect(database_string)
