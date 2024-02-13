@@ -9,8 +9,10 @@ const cookieParser = require("cookie-parser");
 const blogRoute = require("./routes/blogRoute.js"); //   2 second routes where controllers used
 const userRoute = require("./routes/userRoute.js");
 const jwt = require("jsonwebtoken");
+const path = require('path');
 const User = require("./models/user.model.js");
 // register view engine
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 const port = process.env.PORT || 8000;
