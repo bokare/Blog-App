@@ -32,7 +32,7 @@ mongoose
 // third party middleware to print path , method, ip add of client
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true })); // for fetching form data in req.body
-app.use(express.static("public")); // for accesss files in public folder like css
+app.use(express.static(path.join(__dirname, 'public'))); // for accesss files in public folder like css
 app.use(cors());
 app.use(cookieParser());
 
