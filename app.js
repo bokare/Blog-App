@@ -12,8 +12,8 @@ const jwt = require("jsonwebtoken");
 const path = require('path');
 const User = require("./models/user.model.js");
 // register view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));      //  set views otherwise give problem in production
+app.set("view engine", "ejs");  
 
 const port = process.env.PORT || 8000;
 const database_string = process.env.MONGO_URI;
@@ -32,7 +32,7 @@ mongoose
 // third party middleware to print path , method, ip add of client
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true })); // for fetching form data in req.body
-app.use(express.static(path.join(__dirname, 'public'))); // for accesss files in public folder like css
+app.use(express.static(path.join(__dirname, 'public'))); // for accesss files in public folder like css give full path of folder otherwise give problem in production
 app.use(cors());
 app.use(cookieParser());
 
@@ -67,6 +67,10 @@ app.use(async (req, res, next) => {
       // Token is expired
       console.log("\n\n============================ Token expired =======================\n\n");
       // make user loged out and redirect to /blogs
+      const options = {
+        httpOnly: true,
+        secure: true,
+      };
       return res
         .status(200)
         .clearCookie("accessToken", options)
